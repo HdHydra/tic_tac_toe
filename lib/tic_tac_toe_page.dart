@@ -9,45 +9,55 @@ class TicTacToePage extends StatefulWidget {
 
 class _TicTacToePageState extends State<TicTacToePage> {
   int user = 0;
-  Image
+  late List<String> images;
   final board = [
     [0, 0, 0],
     [0, 0, 0],
     [0, 0, 0],
   ];
-  List<String> images = [
-    '/assets/images/blank.png',
-    '/assets/images/playerA.png',
-    '/assets/images/playerB.png',
+  List<String> imageAssets = [
+    '/assets/images/player0.png',
+    '/assets/images/player1.png',
+    '/assets/images/player2.png',
   ];
+  @override
+  void initState() {
+    super.initState();
+    setState(() {
+      images = [
+        imageAssets[0],
+        imageAssets[0],
+        imageAssets[0],
+        imageAssets[0],
+        imageAssets[0],
+        imageAssets[0],
+        imageAssets[0],
+        imageAssets[0],
+        imageAssets[0],
+      ];
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: SizedBox(
-          width: 300,
-          height: 300,
-          child: Column(
-            children: [
-              Row(
+      body: GridView.count(
+        crossAxisCount: 3,
+        children: List.generate(
+          images.length,
+          (index) {
+            return Card(
+              child: Column(
                 children: [
-                  GestureDetector(
-                    onTap: (){
-                      setState(() {
-                        image = images[$user]
-                      });
-                    },
-                    child: SizedBox(
-                      height: 100, width: 100,
-                    ),
-                  )
+                  Image.network(images[index]),
+                  SizedBox(height: 10),
+                  Text('Image $index'),
                 ],
-              )
-            ],
-          ),
+              ),
+            );
+          },
         ),
-      )
+      ),
     );
   }
 }

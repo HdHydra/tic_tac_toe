@@ -61,7 +61,7 @@ class _TicTacToePageState extends State<TicTacToePage> {
     print("Player $winner is the winner");
     setState(() {
       win = true;
-      score[winner-1]++;
+      score[winner - 1]++;
     });
 
     Future.delayed(Duration(seconds: 2), () {
@@ -121,6 +121,8 @@ class _TicTacToePageState extends State<TicTacToePage> {
           onPressed: () {
             setState(() {
               resetImages();
+              score[0] = 0;
+              score[1] = 0;
             });
           },
         ),
@@ -128,22 +130,6 @@ class _TicTacToePageState extends State<TicTacToePage> {
       body: Stack(
         alignment: Alignment.center,
         children: [
-          Positioned(
-            left: 30,
-            top: 30,
-            child: Text(
-              'Player-1: ${score[0]}',
-              style: TextStyle(fontSize: 30),
-            ),
-          ),
-          Positioned(
-            right: 30,
-            top: 30,
-            child: Text(
-              'Player-2: ${score[1]}',
-              style: TextStyle(fontSize: 30),
-            ),
-          ),
           Container(
             child: GridView.count(
               padding: EdgeInsets.only(top: 100),
@@ -200,6 +186,22 @@ class _TicTacToePageState extends State<TicTacToePage> {
                   );
                 },
               ),
+            ),
+          ),
+          Positioned(
+            left: 30,
+            top: 30,
+            child: Text(
+              'Player-1: ${score[0]}',
+              style: TextStyle(fontSize: 30),
+            ),
+          ),
+          Positioned(
+            right: 30,
+            top: 30,
+            child: Text(
+              'Player-2: ${score[1]}',
+              style: TextStyle(fontSize: 30),
             ),
           ),
           Positioned(

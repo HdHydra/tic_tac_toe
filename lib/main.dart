@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'pages/tic_tac_toe_page';
+import 'tic_tac_toe_page.dart';
 
 void main() {
-  runApp(MyApp);
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -10,6 +10,11 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(title: 'Tic Tac Toe', home: TicTacToePage());
+    return MaterialApp(
+      // darkTheme: ThemeData.dark(),
+      theme: ThemeData(colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.brown, backgroundColor: Colors.black,accentColor: Colors.black)),
+      title: 'Tic Tac Toe',
+      home: TicTacToePage(),
+    );
   }
 }
